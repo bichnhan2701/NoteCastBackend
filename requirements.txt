@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+transformers
+torch
+pydub
+ffmpeg-python
+python-multipart
+aiofiles
+soundfile
+cloudinary
+python-dotenv
+requests

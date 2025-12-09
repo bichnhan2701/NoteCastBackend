@@ -1,0 +1,6 @@
+.myVenv/
+__pycache__/
+*.pyc
+*.env
+/tmp/
+*.wav
