@@ -2,6 +2,7 @@
 import os, tempfile, time, shutil, asyncio
 from fastapi import FastAPI, UploadFile, File, HTTPException, Form
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from .audio_utils import to_wav_16k_mono, chunk_wav, cleanup_files, get_duration_ms
 from .model import transcribe_chunk, get_asr
 from .worker import inference_consumer, submit_job
@@ -10,6 +11,14 @@ from .schemas import TranscriptionResponse
 from typing import Optional
 
 app = FastAPI(title="PhoWhisper ASR")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Cho phép mọi origin, có thể chỉnh lại cho bảo mật
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.on_event("startup")
 async def startup_event():

@@ -1,11 +1,6 @@
 fastapi
-uvicorn[standard]
 transformers
 torch
 ffmpeg-python
-python-multipart
-aiofiles
-soundfile
 cloudinary
-python-dotenv
 requests

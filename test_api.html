@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test PhoWhisper ASR API</title>
+</head>
+<body>
+    <h2>Test PhoWhisper ASR API</h2>
+    <form id="uploadForm">
+        <label>Chọn file âm thanh (.wav, .mp3):</label>
+        <input type="file" id="audioFile" name="file" accept="audio/*" required>
+        <button type="submit">Gửi file</button>
+    </form>
+    <pre id="result"></pre>
+    <script>
+    document.getElementById('uploadForm').onsubmit = async function(e) {
+        e.preventDefault();
+        const fileInput = document.getElementById('audioFile');
+        if (!fileInput.files.length) return;
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+        document.getElementById('result').textContent = 'Đang gửi file...';
+        try {
+            const res = await fetch('http://localhost:8000/transcribe', {
+                method: 'POST',
+                body: formData
+            });
+            const data = await res.json();
+            document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+        } catch (err) {
+            document.getElementById('result').textContent = 'Lỗi: ' + err;
+        }
+    };
+    </script>
+</body>
+</html>
