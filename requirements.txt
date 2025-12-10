@@ -2,7 +2,6 @@ fastapi
 uvicorn[standard]
 transformers
 torch
-pydub
 ffmpeg-python
 python-multipart
 aiofiles
