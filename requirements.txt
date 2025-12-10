@@ -4,3 +4,4 @@ torch
 ffmpeg-python
 cloudinary
 requests
+uvicorn[standard]
